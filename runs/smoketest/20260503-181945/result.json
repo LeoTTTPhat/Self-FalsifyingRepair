@@ -1,0 +1,385 @@
+{
+  "manifest": {
+    "bug_id": "smoketest",
+    "timestamp": "20260503-181945",
+    "elapsed_seconds": 0.3953,
+    "failing_input": "a,\"b,c\",d",
+    "k": 8,
+    "delta_threshold": 0.5,
+    "hypothesis_sha256": "adff33fb059ca48870b2786863133ce468e11c418d11f9e51453176a28bfb5f1",
+    "vacuous_hypothesis": false
+  },
+  "patches": {
+    "symptom_suppression": {
+      "accepted": false,
+      "rates": {
+        "unpatched_fail_rate": 1.0,
+        "patched_pass_rate": 0.0,
+        "delta": 0.0
+      },
+      "outcomes": [
+        {
+          "input": "x,\"y,z,w\",p",
+          "expected": [
+            "x",
+            "y,z,w",
+            "p"
+          ],
+          "unpatched_output": [
+            "x",
+            "\"y",
+            "z",
+            "w\"",
+            "p"
+          ],
+          "patched_output": [
+            "x",
+            "\"y",
+            "z",
+            "w\"",
+            "p"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": false,
+          "differentiates": false
+        },
+        {
+          "input": "\"a,b\",\"c\"",
+          "expected": [
+            "a,b",
+            "c"
+          ],
+          "unpatched_output": [
+            "\"a",
+            "b\"",
+            "\"c\""
+          ],
+          "patched_output": [
+            "\"a",
+            "b\"",
+            "\"c\""
+          ],
+          "unpatched_fails": true,
+          "patched_passes": false,
+          "differentiates": false
+        },
+        {
+          "input": "left,\"middle,with,commas\",right",
+          "expected": [
+            "left",
+            "middle,with,commas",
+            "right"
+          ],
+          "unpatched_output": [
+            "left",
+            "\"middle",
+            "with",
+            "commas\"",
+            "right"
+          ],
+          "patched_output": [
+            "left",
+            "\"middle",
+            "with",
+            "commas\"",
+            "right"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": false,
+          "differentiates": false
+        },
+        {
+          "input": "\"leading,comma\",tail",
+          "expected": [
+            "leading,comma",
+            "tail"
+          ],
+          "unpatched_output": [
+            "\"leading",
+            "comma\"",
+            "tail"
+          ],
+          "patched_output": [
+            "\"leading",
+            "comma\"",
+            "tail"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": false,
+          "differentiates": false
+        },
+        {
+          "input": "head,\"trailing,comma\"",
+          "expected": [
+            "head",
+            "trailing,comma"
+          ],
+          "unpatched_output": [
+            "head",
+            "\"trailing",
+            "comma\""
+          ],
+          "patched_output": [
+            "head",
+            "\"trailing",
+            "comma\""
+          ],
+          "unpatched_fails": true,
+          "patched_passes": false,
+          "differentiates": false
+        },
+        {
+          "input": "1,\"2,3\",4",
+          "expected": [
+            "1",
+            "2,3",
+            "4"
+          ],
+          "unpatched_output": [
+            "1",
+            "\"2",
+            "3\"",
+            "4"
+          ],
+          "patched_output": [
+            "1",
+            "\"2",
+            "3\"",
+            "4"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": false,
+          "differentiates": false
+        },
+        {
+          "input": "\"nested,looking\",plain,\"again,here\"",
+          "expected": [
+            "nested,looking",
+            "plain",
+            "again,here"
+          ],
+          "unpatched_output": [
+            "\"nested",
+            "looking\"",
+            "plain",
+            "\"again",
+            "here\""
+          ],
+          "patched_output": [
+            "\"nested",
+            "looking\"",
+            "plain",
+            "\"again",
+            "here\""
+          ],
+          "unpatched_fails": true,
+          "patched_passes": false,
+          "differentiates": false
+        },
+        {
+          "input": "alpha,\"beta,gamma\",delta",
+          "expected": [
+            "alpha",
+            "beta,gamma",
+            "delta"
+          ],
+          "unpatched_output": [
+            "alpha",
+            "\"beta",
+            "gamma\"",
+            "delta"
+          ],
+          "patched_output": [
+            "alpha",
+            "\"beta",
+            "gamma\"",
+            "delta"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": false,
+          "differentiates": false
+        }
+      ]
+    },
+    "real_fix": {
+      "accepted": true,
+      "rates": {
+        "unpatched_fail_rate": 1.0,
+        "patched_pass_rate": 1.0,
+        "delta": 1.0
+      },
+      "outcomes": [
+        {
+          "input": "x,\"y,z,w\",p",
+          "expected": [
+            "x",
+            "y,z,w",
+            "p"
+          ],
+          "unpatched_output": [
+            "x",
+            "\"y",
+            "z",
+            "w\"",
+            "p"
+          ],
+          "patched_output": [
+            "x",
+            "y,z,w",
+            "p"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": true,
+          "differentiates": true
+        },
+        {
+          "input": "\"a,b\",\"c\"",
+          "expected": [
+            "a,b",
+            "c"
+          ],
+          "unpatched_output": [
+            "\"a",
+            "b\"",
+            "\"c\""
+          ],
+          "patched_output": [
+            "a,b",
+            "c"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": true,
+          "differentiates": true
+        },
+        {
+          "input": "left,\"middle,with,commas\",right",
+          "expected": [
+            "left",
+            "middle,with,commas",
+            "right"
+          ],
+          "unpatched_output": [
+            "left",
+            "\"middle",
+            "with",
+            "commas\"",
+            "right"
+          ],
+          "patched_output": [
+            "left",
+            "middle,with,commas",
+            "right"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": true,
+          "differentiates": true
+        },
+        {
+          "input": "\"leading,comma\",tail",
+          "expected": [
+            "leading,comma",
+            "tail"
+          ],
+          "unpatched_output": [
+            "\"leading",
+            "comma\"",
+            "tail"
+          ],
+          "patched_output": [
+            "leading,comma",
+            "tail"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": true,
+          "differentiates": true
+        },
+        {
+          "input": "head,\"trailing,comma\"",
+          "expected": [
+            "head",
+            "trailing,comma"
+          ],
+          "unpatched_output": [
+            "head",
+            "\"trailing",
+            "comma\""
+          ],
+          "patched_output": [
+            "head",
+            "trailing,comma"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": true,
+          "differentiates": true
+        },
+        {
+          "input": "1,\"2,3\",4",
+          "expected": [
+            "1",
+            "2,3",
+            "4"
+          ],
+          "unpatched_output": [
+            "1",
+            "\"2",
+            "3\"",
+            "4"
+          ],
+          "patched_output": [
+            "1",
+            "2,3",
+            "4"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": true,
+          "differentiates": true
+        },
+        {
+          "input": "\"nested,looking\",plain,\"again,here\"",
+          "expected": [
+            "nested,looking",
+            "plain",
+            "again,here"
+          ],
+          "unpatched_output": [
+            "\"nested",
+            "looking\"",
+            "plain",
+            "\"again",
+            "here\""
+          ],
+          "patched_output": [
+            "nested,looking",
+            "plain",
+            "again,here"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": true,
+          "differentiates": true
+        },
+        {
+          "input": "alpha,\"beta,gamma\",delta",
+          "expected": [
+            "alpha",
+            "beta,gamma",
+            "delta"
+          ],
+          "unpatched_output": [
+            "alpha",
+            "\"beta",
+            "gamma\"",
+            "delta"
+          ],
+          "patched_output": [
+            "alpha",
+            "beta,gamma",
+            "delta"
+          ],
+          "unpatched_fails": true,
+          "patched_passes": true,
+          "differentiates": true
+        }
+      ]
+    }
+  }
+}

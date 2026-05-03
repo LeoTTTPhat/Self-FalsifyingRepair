@@ -1,0 +1,6 @@
+{
+  "summary": "The parser splits on commas without respecting commas inside double-quoted CSV fields.",
+  "predicate_source": "def covers(value: str) -> bool:\n    in_quotes = False\n    for index, char in enumerate(value):\n        if char == '\"':\n            in_quotes = not in_quotes\n        elif char == \",\" and in_quotes:\n            return True\n    return False\n",
+  "rationale": "Any row containing a comma while the parser is inside double quotes should be treated as a single CSV field by a correct implementation.",
+  "confidence": 0.91
+}
